@@ -1,13 +1,12 @@
 # Bring in deps
 import os 
 # from api import huggingface as apikey 
+import streamlit as st 
 try:
     from api import openai as apikey
 except ImportError:
     apikey = st.secrets["OPENAI_API_KEY"]
 
-
-import streamlit as st 
 from langchain.llms import OpenAI
 # from langchain.llms import HuggingFaceHub
 from langchain.prompts import PromptTemplate
