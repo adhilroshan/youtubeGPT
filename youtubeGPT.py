@@ -1,7 +1,11 @@
 # Bring in deps
 import os 
 # from api import huggingface as apikey 
-from api import openai as apikey 
+try:
+    from api import openai as apikey
+except ImportError:
+    apikey = st.secrets["OPENAI_API_KEY"]
+
 
 import streamlit as st 
 from langchain.llms import OpenAI
@@ -12,7 +16,7 @@ from langchain.memory import ConversationBufferMemory
 from langchain.utilities import WikipediaAPIWrapper 
 
 # os.environ['HUGGINGFACEHUB_API_TOKEN'] = apikey
-os.environ['OPENAI_API_KEY'] = apikey | st.secrets["OPENAI_API_KEY"]
+os.environ['OPENAI_API_KEY'] = apikey 
 
 # App framework
 st.title('🦜🔗 YouTube GPT Creator')
